@@ -1,0 +1,15 @@
+/* Image Upload Styling */
+.product-images {
+    display: flex; /* Creates automatic inline and wrapping */
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.product-images img {
+    width: 121px;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 5px;
+    border: 1px black solid;
+    flex: flex-shrink;
+}

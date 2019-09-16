@@ -1,0 +1,71 @@
+/* Margin on all Card Classes */
+.card {
+    margin-top: 10px;
+}
+
+/* Top Searchbar */
+.logo-search-box .someClass {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+.logo-search-box #logo {
+    font-size: 1.75em;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    padding-right: 30px;
+}
+
+.logo-search-box .input-group {
+    align-content: flex-start;
+}
+
+/* Product Title */
+.card-header {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* Item Image Carousel */
+.carousel-item {
+    min-height: 400px;
+}
+
+.carousel-item img {
+    max-height: 400px;
+    left: 50%;
+    max-width: 100%;
+    display: block;
+    position: absolute;
+    top: 50.0%;
+    transform: translate(-50.0%, -50.0%);
+}
+
+
+/* Horizontal Divider */
+hr {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+.sidebar #seller-info {
+    padding-bottom: 15px;
+}
+
+.sidebar .card-body {
+    padding-bottom: 5px;
+    padding-top: 13px;
+}
+
+.sidebar #place-expression {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}

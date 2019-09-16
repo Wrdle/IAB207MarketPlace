@@ -1,0 +1,16 @@
+/* Navbar */
+.navbar {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+.navbar .navbar-brand {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: 800;
+}
+
+/* Removes left footer items to declutter screen when it becomes smaller */
+@media only screen and (max-width: 767px) {
+    footer #left {
+      display: none;
+    }
+}
