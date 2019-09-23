@@ -10,3 +10,7 @@ def index():
 @bp.route('/search')
 def search():
     return render_template('search.html')
+
+@bp.route('/log_sign')
+def log_sign():
+    return render_template('log_sign.html')
