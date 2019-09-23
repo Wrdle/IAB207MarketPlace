@@ -1,0 +1,29 @@
+/* Top Searchbar */
+.logo-search-box .someClass {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+.logo-search-box #logo {
+    font-size: 1.75em;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    padding-right: 30px;
+}
+
+.logo-search-box .input-group {
+    align-content: flex-start;
+}
+
+.item-picture {
+    background-size: cover;
+    background-position: center;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.pagination {
+    margin-left: auto;
+    margin-right: auto;
+}

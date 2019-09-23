@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+{% endblock %}
+
+{% block content %}
+    <!-- Search Bar and Top Image -->
+    <div class="main">  
+        <div class="jumbotron">
+            <h1 class="display-4 jumbotron-text">COMPUBAY</h1>
+
+            <!-- Search Bar -->
+            <form class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="search-icon">&#x1F50D;</span>
+                    </div>
+                    <input type="text" id="search-bar" class="form-control" placeholder="Search for anything" aria-label="Search" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>  
+    <br><br>
+
+    <!-- Popular Items -->
+    <div class="container most-popular">
+        <h2><center>MOST POPULAR ITEMS</center></h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <a href="item.html" style="background-image: url({{url_for('static', filename='img/custombuilt.jpg')}});"></a>
+                    <div class="card-body">
+                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
+                        <p>Aspley - $300</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <a href="item.html" style="background-image: url('{{url_for('static', filename='img/desktop.png')}}');"></a>
+                    <div class="card-body">
+                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
+                        <p>Browns Plains - $1000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <a href="item.html" style="background-image: url('{{url_for('static', filename='img/razer.jpg')}}');"></a>
+                    <div class="card-body">
+                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
+                        <p>Newstead - $150</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <a href="item.html" style="background-image: url('{{url_for('static', filename='img/surfacelaptop.jpg')}}');"></a>
+                    <div class="card-body">
+                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
+                        <p>Fortitude Valley - $250</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

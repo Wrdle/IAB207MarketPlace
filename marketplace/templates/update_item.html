@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/createitem.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <br>
+        <h1><center>Update Your Listing</center></h1>
+        <p><center>to update your listing, its as simple as just changing any fields below and click save!</center></p>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- General Item Information -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <!-- Name -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Name: </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name of the product you want to sell" aria-label="Name" aria-describedby="basic-addon1">
+                        </div>
+                        <!-- Category -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Category:</span>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option selected>Item Category</option>
+                                <option value="1">Laptop</option>
+                                <option value="2">Desktop</option>
+                            </select>
+                        </div>
+                        <!-- Price -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Price:</span>
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter your price" aria-label="Dollar amount (with dot and two decimal places)">
+                        </div>
+                        <!-- Location -->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Item Location:</span>
+                            </div>
+                            <input type="text" aria-label="Suburb" class="form-control" placeholder="Suburb">
+                            <input type="text" aria-label="State" class="form-control" placeholder="State">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                
+                <!-- Computer Specifications Input -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <!-- CPU -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">CPU</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="CPU" aria-label="CPU" aria-describedby="basic-addon1">
+                        </div>
+                        <!-- RAM -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">RAM</span>
+                                <span class="input-group-text">(GB)</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Total RAM in Gigabytes" aria-label="RAM" aria-describedby="basic-addon1">
+                        </div>
+                        <!-- Storage -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Total Storage</span>
+                                <span class="input-group-text">(GB)</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Total Storage in Gigabytes" aria-label="Storage" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <!-- Item Description Input -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Item Description</span>
+                            </div>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Enter a short description of your computer."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Image Upload -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="product-images">
+                            <div class="images">
+                                <img src="{{url_for('static', filename='img/placeholder.png')}}">
+                                <img src="{{url_for('static', filename='img/placeholder.png')}}">
+                                <img src="{{url_for('static', filename='img/placeholder.png')}}">
+                                <img src="{{url_for('static', filename='img/placeholder.png')}}">
+                                <img src="{{url_for('static', filename='img/placeholder.png')}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">Add Another Photo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Post Listing Button -->
+        <button type="button" class="btn btn-primary btn-lg">Post Listing</button>
+    </div>
+{% endblock %}
