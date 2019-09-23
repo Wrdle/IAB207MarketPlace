@@ -15,66 +15,41 @@
                     <div id="logo">
                         COMPUBAY
                     </div>
-                    <div class="input-group">
+                    <form action="/search" class="input-group" method="GET">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="search-icon">&#x1F50D;</span>
                         </div>
-                        <input type="text" id="search-bar" class="form-control" placeholder="Search for anything" aria-label="Search" aria-describedby="basic-addon1">
+                        <input type="text" name="searchKeywords" id="search-bar" class="form-control" value="{{ search }}" aria-label="Search" aria-describedby="basic-addon1">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">Search</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <br>
-
-    <div class="card mb-3 item-result" style="width: 100%">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <div class="item-picture" style="background-image: url({{url_for('static', filename='img/corsairpc.jpg')}})"></div>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">New Dell Optiplex 620</h5>
-                    <p><b>Type: </b>Desktop</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id dui ac nibh mollis tincidunt. Aliquam fringilla luctus sapien, quis eleifend leo bibendum dignissim...</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    {% if listings == [] %}
+        <center><h2>Oh no... No results for {{ search }} found!</h2></center>
+    {% else %}    
+        {% for listing in listings %}
+        <div class="card mb-3 item-result" style="width: 100%">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <div class="item-picture" style="background-image: url({{url_for('static', filename='img/corsairpc.jpg')}})"></div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="item/{{ listing.id }}"><h5 class="card-title">{{ listing.item_name }}</h5></a>
+                        <p><b>Type: </b>{{ listing.item_category }}</p>
+                        <p class="card-text">{{ listing.item_description }}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="card mb-3 item-result" style="width: 100%">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <div class="item-picture" style="background-image: url({{url_for('static', filename='img/razerpc.jpg')}})"></div>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">New Dell Optiplex 620</h5>
-                    <p><b>Type: </b>Desktop</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id dui ac nibh mollis tincidunt. Aliquam fringilla luctus sapien, quis eleifend leo bibendum dignissim...</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3 item-result" style="width: 100%">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <div class="item-picture" style="background-image: url({{url_for('static', filename='img/nzxtpc.jpg')}})"></div>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">New Dell Optiplex 620</h5>
-                    <p><b>Type: </b>Desktop</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id dui ac nibh mollis tincidunt. Aliquam fringilla luctus sapien, quis eleifend leo bibendum dignissim...</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% endfor %}
+    {% endif %}
     
     <br>
     <nav aria-label="...">

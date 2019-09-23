@@ -16,15 +16,15 @@
                     <div id="logo">
                         COMPUBAY
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="search-icon">&#x1F50D;</span>
-                        </div>
-                        <input type="text" id="search-bar" class="form-control" placeholder="Search for anything" aria-label="Search" aria-describedby="basic-addon1">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </div>
-                    </div>
+                    <form action="/search" class="input-group" method="GET">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="search-icon">&#x1F50D;</span>
+                            </div>
+                            <input type="text" name="searchKeywords" id="search-bar" class="form-control" placeholder="Search for anything" aria-label="Search" aria-describedby="basic-addon1">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                    </form>
                 </div>
             </div>
         </div>
