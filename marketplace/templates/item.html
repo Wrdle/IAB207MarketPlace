@@ -61,8 +61,6 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <!-- Subtitle -->
-                    <h5 class="card-title">Brief subtitle</h5>
                     <!-- Item Description -->
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nunc lacus, rutrum vel arcu eget, maximus cursus risus. Maecenas venenatis, velit vel molestie finibus, nulla urna consectetur lectus, ultrices sodales sem nisi ut velit. <br><br>Cras vel elementum turpis. Nullam congue ornare luctus. Quisque accumsan turpis ut aliquam gravida. Nullam ultricies tincidunt purus, eget lacinia enim fermentum ut. Pellentesque eget magna ipsum. Nulla facilisi. Suspendisse varius at augue id mollis. Quisque imperdiet est nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum laoreet elementum egestas.</p>                           
                 </div>
@@ -74,19 +72,19 @@
         <div class="col-md-4">
             <div class="card sidebar shadow-sm">
                 <div class="card-body" id="seller-info">
-                    <h5 class="card-title">Seller Name</h5>
-                    <p class="card-text"><b>Mobile Number:</b> 0419722540</p>
+                    <h5 class="card-title">{{seller.username}}</h5>
+                    <p class="card-text"><b>Mobile Number: </b>{{seller.phone}}</p>
                 </div>
                 <hr>
                 <div class="card-body">
-                    <h5 class="card-title">Quick Item Information</h5>
+                    <h5 class="card-title">Details</h5>
                     <ul>
-                        <li><b>Item Location: </b>Boondal</li>
-                        <li><b>Category: </b> Desktop</li>
-                        <li><b>CPU: </b> Intel Core i5 4690k</li>
-                        <li><b>RAM (GB): </b> 16</li>
-                        <li><b>Total Storage (GB): </b> 2000</li>
-                        <li><b>Price: </b> $2000</li>
+                        <li><b>Item Location: </b>{{listing.item_suburb}}</li>
+                        <li><b>Category: </b>{{listing.item_category}}</li>
+                        <li><b>CPU: </b>{{listing.item_cpu}}</li>
+                        <li><b>RAM (GB): </b>{{listing.item_ramgb}}</li>
+                        <li><b>Total Storage (GB): </b>{{listing.item_totalgb}}</li>
+                        <li><b>Price: </b>{{listing.item_price}}</li>
                     </ul>
                 </div>
                 <hr>

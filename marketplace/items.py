@@ -21,7 +21,8 @@ def bids(id):
 def item(id):
     # Will use id to get computer information. Will query DB for this
     listing = Listing.query.filter_by(id=id).first()
-    return render_template('item.html', listing=listing)
+    sellerid = Listing.seller_id
+    return render_template('item.html', listing=listing, seller=User.query.filter_by(id=sellerid).first())
 
 @bp.route('/create')
 def createItem():
