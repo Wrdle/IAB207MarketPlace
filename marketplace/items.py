@@ -1,4 +1,7 @@
 from flask import Blueprint, render_template
+from .models import User, Listing
+from . import db
+
 
 bp = Blueprint('item', __name__, url_prefix='/item')
 
@@ -17,8 +20,21 @@ def bids(id):
 @bp.route('/<id>')
 def item(id):
     # Will use id to get computer information. Will query DB for this
-    return render_template('item.html')
+    listing = Listing.query.filter_by(id=id).first()
+    return render_template('item.html', listing=listing)
 
 @bp.route('/create')
 def createItem():
+
+    usera = User(username = 'johnnyjon', email = 'john@gmail.com', password_hash = '44a44', phone='0400000000')
+    db.session.add(usera)
+    
+    listing = Listing(user=usera, item_name='Xtreme Gamor PC', item_description = 'Get XTREME cooling PC', item_category='PC', item_suburb = 'Wakerley', item_price=50.05, item_cpu='Intel i10', item_ramgb=2, item_totalgb=256)
+    db.session.add(listing)
+    db.session.commit()
+
     return render_template('create_item.html')
+
+def get_listing():
+    listingResult = Listing.query.filter_by(id=id).first()
+    return listingResult
