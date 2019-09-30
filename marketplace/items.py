@@ -42,14 +42,14 @@ def createItem():
         #upload file location – directory of this file/static/image
         upload_path = os.path.join(BASE_PATH, 'static/img', secure_filename(filename))
         # store relative path in DB as image location in HTML is relative
-        db_upload_path = '/static/img/'+ secure_filename(filename)
+        db_upload_path = '/static/img/listings/'+ secure_filename(filename)
         # save the file and return the db upload path
         fp.save(upload_path)
 
         newListing = Listing(user= usera, name=form.name.data, description=form.description.data,
         suburb=form.suburb.data, state=form.state.data, price=form.price.data,
         category=form.category.data, cpu= form.cpu.data, ramgb=form.ramgb.data, 
-        totalgb=form.totalgb.data)
+        totalgb=form.totalgb.data, image=filename)
 
         db.session.add(newListing)
         db.session.commit()

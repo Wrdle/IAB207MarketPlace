@@ -42,7 +42,7 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <h5 class="card-header">{{listing.name}}</h5>
-                <img src="{{lisitng.image}}">
+                <img src="{{url_for('static', filename=('img/' + listing.image))}}">
                 <div class="card-body">
                     <!-- Item Description -->
                     <p class="card-text">{{listing.description}}</p>                           

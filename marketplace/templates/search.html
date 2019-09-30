@@ -41,7 +41,7 @@
         <div class="card mb-3 item-result" style="width: 100%">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <div class="item-picture" style="background-image: url({{url_for('static', filename='img/corsairpc.jpg')}})"></div>
+                    <div class="item-picture" style="background-image: url({{url_for('static', filename=('img/' + listing.image))}})"></div>
                 </div>
                 <div class="col-md-6" class="search-container">
                     <div class="card-body">
