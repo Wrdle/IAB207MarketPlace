@@ -21,26 +21,18 @@
     align-content: flex-start;
 }
 
+.logo-search-box select {
+    border-radius: 0px 0px 0px 0px;
+}
+
 /* Product Title */
 .card-header {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
-/* Item Image Carousel */
-.carousel-item {
-    min-height: 400px;
+.card img {
+    width: 100%;
 }
-
-.carousel-item img {
-    max-height: 400px;
-    left: 50%;
-    max-width: 100%;
-    display: block;
-    position: absolute;
-    top: 50.0%;
-    transform: translate(-50.0%, -50.0%);
-}
-
 
 /* Horizontal Divider */
 hr {

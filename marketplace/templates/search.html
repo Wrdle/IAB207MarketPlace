@@ -19,8 +19,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="search-icon">&#x1F50D;</span>
                         </div>
-                        <input type="text" name="searchKeywords" id="search-bar" class="form-control" value="{{ search }}" aria-label="Search" aria-describedby="basic-addon1">
+                        <input type="text" name="searchKeywords" id="search-bar" class="form-control" placeholder="Search for anything" aria-label="Search" aria-describedby="basic-addon1">
                         <div class="input-group-append">
+                            <select class="custom-select" name="searchCategory" id="searchCategory">
+                                <option selected value="Desktop">Dekstop</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="All In One">All In One</option>
+                            </select>
                             <button class="btn btn-primary" type="submit">Search</button>
                         </div>
                     </form>
@@ -38,12 +43,17 @@
                 <div class="col-md-4">
                     <div class="item-picture" style="background-image: url({{url_for('static', filename='img/corsairpc.jpg')}})"></div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6" class="search-container">
                     <div class="card-body">
-                        <a href="item/{{ listing.id }}"><h5 class="card-title">{{ listing.item_name }}</h5></a>
-                        <p><b>Type: </b>{{ listing.item_category }}</p>
-                        <p class="card-text">{{ listing.item_description }}</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <a href="item/{{ listing.id }}"><h5 class="card-title">{{ listing.name }}</h5></a>
+                        <p><b>Price: </b> ${{ listing.price }} <b>Type: </b>{{ listing.category }}</p>
+                        <p class="card-text">{{ listing.description }}</p>
+                    </div>
+                </div>
+                <div class="col-md-2" class="search-container">
+                    <div class="card-body">
+                        <small class="text-muted">Posted {{ listing.post_date.strftime("%d/%m/%Y") }}</small>
+                        <small class="text-muted">{{ listing.suburb }}, {{ listing.state }}</small>
                     </div>
                 </div>
             </div>

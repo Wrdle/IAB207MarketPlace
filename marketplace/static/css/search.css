@@ -23,6 +23,15 @@
     height: 100%;
     width: 100%;
 }
+
+.search-container {
+    margin: 10px 10px 10px 10px;
+}
+
+#searchCategory {
+    border-radius: 0px 0px 0px 0px;
+}
+
 .pagination {
     margin-left: auto;
     margin-right: auto;

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 from .models import Listing
+from sqlalchemy import and_
 
 bp = Blueprint('main', __name__)
 
@@ -9,9 +10,10 @@ def index():
     return render_template('index.html')
 
 @bp.route('/search', methods=['GET','POST'])
-def search():
+def search(): 
     search = request.args.get('searchKeywords')
-    listings = Listing.query.filter(Listing.item_name.like("%" + search + "%")).all()
+    searchCategory = request.args.get('searchCategory')
+    listings = Listing.query.filter(and_(Listing.name.like("%" + search + "%"), Listing.category == searchCategory)).all()
     return render_template('search.html', listings = listings, search=search)
 
 @bp.route('/log_sign')

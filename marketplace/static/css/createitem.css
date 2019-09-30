@@ -13,3 +13,18 @@
     border: 1px black solid;
     flex: flex-shrink;
 }
+
+.card-body #files {
+    padding-bottom: 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#submit {
+    background-color: rgb(46, 171, 230);
+    display: block;
+    color: white;
+    padding: 10px 10px 10px 10px;
+}

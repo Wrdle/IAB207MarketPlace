@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, request
+from werkzeug import secure_filename
+import os
 from .models import User, Listing
+from .forms import CreateItemForm
 from . import db
 
 
@@ -24,17 +27,34 @@ def item(id):
     sellerid = Listing.seller_id
     return render_template('item.html', listing=listing, seller=User.query.filter_by(id=sellerid).first())
 
-@bp.route('/create')
+@bp.route('/create', methods = ['GET', 'POST'])
 def createItem():
+    form = CreateItemForm()
 
-    usera = User(username = 'johnnyjon', email = 'john@gmail.com', password_hash = '44a44', phone='0400000000')
-    db.session.add(usera)
-    
-    listing = Listing(user=usera, item_name='Xtreme Gamor PC', item_description = 'Get XTREME cooling PC', item_category='PC', item_suburb = 'Wakerley', item_price=50.05, item_cpu='Intel i10', item_ramgb=2, item_totalgb=256)
-    db.session.add(listing)
-    db.session.commit()
+    if form.validate_on_submit():
+        usera = User(username = 'johnnyjon', email = 'john@gmail.com', password_hash = '44a44', phone='0400000000')
+        db.session.add(usera)
 
-    return render_template('create_item.html')
+        fp = form.image.data
+        filename = fp.filename
+        # get the current path of the module file… store file relative to this path
+        BASE_PATH = os.path.dirname(__file__)
+        #upload file location – directory of this file/static/image
+        upload_path = os.path.join(BASE_PATH, 'static/img', secure_filename(filename))
+        # store relative path in DB as image location in HTML is relative
+        db_upload_path = '/static/img/'+ secure_filename(filename)
+        # save the file and return the db upload path
+        fp.save(upload_path)
+
+        newListing = Listing(user= usera, name=form.name.data, description=form.description.data,
+        suburb=form.suburb.data, state=form.state.data, price=form.price.data,
+        category=form.category.data, cpu= form.cpu.data, ramgb=form.ramgb.data, 
+        totalgb=form.totalgb.data)
+
+        db.session.add(newListing)
+        db.session.commit()
+        return redirect(url_for('item.createItem'))
+    return render_template('create_item.html', form=form)
 
 def get_listing():
     listingResult = Listing.query.filter_by(id=id).first()

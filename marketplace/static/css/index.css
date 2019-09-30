@@ -37,6 +37,10 @@
     text-align: center;
 }
 
+#searchCategory {
+    border-radius: 0px 0px 0px 0px;
+}
+
 /* Responsive Styling for Search Bar */
 @media screen and (max-width: 600px) {
     .main .jumbotron {
