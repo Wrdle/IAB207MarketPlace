@@ -34,42 +34,17 @@
     <div class="container most-popular">
         <h2><center>MOST POPULAR ITEMS</center></h2>
         <div class="row">
-            <div class="col-md-3">
-                <div class="card shadow-sm">
-                    <a href="item.html" style="background-image: url({{url_for('static', filename='img/custombuilt.jpg')}});"></a>
-                    <div class="card-body">
-                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
-                        <p>Aspley - $300</p>
+            {% for listing in listings %}
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                        <a href="item.html" style="background-image: url('{{url_for('static', filename=('img/listings/' + listing.image))}}');"></a>
+                        <div class="card-body">
+                            <h6 class="card-title"><a href="item.html">{{ listing.name }}</a></h6>
+                            <p>{{ listing.suburb }}, {{ listing.state }} - ${{ listing.price }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card shadow-sm">
-                    <a href="item.html" style="background-image: url('{{url_for('static', filename='img/desktop.png')}}');"></a>
-                    <div class="card-body">
-                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
-                        <p>Browns Plains - $1000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card shadow-sm">
-                    <a href="item.html" style="background-image: url('{{url_for('static', filename='img/razer.jpg')}}');"></a>
-                    <div class="card-body">
-                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
-                        <p>Newstead - $150</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card shadow-sm">
-                    <a href="item.html" style="background-image: url('{{url_for('static', filename='img/surfacelaptop.jpg')}}');"></a>
-                    <div class="card-body">
-                        <h6 class="card-title"><a href="item.html">Core i5 Desktop Computer</a></h6>
-                        <p>Fortitude Valley - $250</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

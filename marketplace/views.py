@@ -1,13 +1,14 @@
 from flask import Blueprint, render_template, request
 from .models import Listing
-from sqlalchemy import and_
+from sqlalchemy import and_, desc
 
 bp = Blueprint('main', __name__)
 
 
 @bp.route('/')
 def index():
-    return render_template('index.html')
+    listings = Listing.query.order_by(desc(Listing.post_date)).limit(4).all()
+    return render_template('index.html', listings=listings)
 
 @bp.route('/search', methods=['GET','POST'])
 def search(): 
