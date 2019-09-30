@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/search.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container col-sm-6">
+    <br>
+    <br>
+    <h2 class="text-center">Login</h2>
+    <!--update the action and the method with relevant information-->
+    <form action="/login", method="POST" class="border shadow-sm p-3 mb-5 bg-white rounded">
+      <!-- keeps the label and text in a group vertically stacked--> 
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" name="email">
+        </div>
+        
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control"  name="pwd">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+        <br>
+        <p class="text-center">Don't have an account? <a href="/register">Register now</a></p>
+    </form>
+</div>
+
+{% endblock %}
