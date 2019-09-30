@@ -26,7 +26,9 @@ def item(id):
     # Will use id to get computer information. Will query DB for this
     listing = Listing.query.filter_by(id=id).first()
     sellerid = Listing.seller_id
-    return render_template('item.html', listing=listing, seller=User.query.filter_by(id=sellerid).first())
+    if (listing != None): 
+        return render_template('item.html', listing=listing, seller=User.query.filter_by(id=sellerid).first())
+    return render_template('404.html')
 
 @bp.route('/create', methods = ['GET', 'POST'])
 def createItem():
