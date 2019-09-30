@@ -19,6 +19,10 @@ def search():
         listings = Listing.query.filter(Listing.category == searchCategory).all()
     return render_template('search.html', listings = listings, search=searchKeywords)
 
-@bp.route('/log_sign')
-def log_sign():
-    return render_template('log_sign.html')
+@bp.route('/login')
+def login():
+    return render_template('login.html')
+
+@bp.route('/register')
+def register():
+    return render_template('register.html')
