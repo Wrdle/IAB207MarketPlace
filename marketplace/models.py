@@ -24,6 +24,7 @@ class Listing(db.Model):
     cpu = db.Column(db.String(50))
     ramgb = db.Column(db.Integer)
     totalgb = db.Column(db.Integer)
+    image = db.Column(db.String(200), nullable=False)
 
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 

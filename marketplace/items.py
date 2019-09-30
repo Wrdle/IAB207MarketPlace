@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from werkzeug import secure_filename
+import uuid
 import os
 from .models import User, Listing
 from .forms import CreateItemForm
@@ -37,19 +38,21 @@ def createItem():
 
         fp = form.image.data
         filename = fp.filename
+        filename, ext = os.path.splitext(filename)
+        filename = uuid.uuid4().hex + ext
         # get the current path of the module file… store file relative to this path
         BASE_PATH = os.path.dirname(__file__)
         #upload file location – directory of this file/static/image
-        upload_path = os.path.join(BASE_PATH, 'static/img', secure_filename(filename))
+        upload_path = os.path.join(BASE_PATH, 'static/img/listings', secure_filename(filename))
         # store relative path in DB as image location in HTML is relative
-        db_upload_path = '/static/img/'+ secure_filename(filename)
+        db_upload_path = '/static/img/listings/'+ secure_filename(filename)
         # save the file and return the db upload path
         fp.save(upload_path)
 
         newListing = Listing(user= usera, name=form.name.data, description=form.description.data,
         suburb=form.suburb.data, state=form.state.data, price=form.price.data,
         category=form.category.data, cpu= form.cpu.data, ramgb=form.ramgb.data, 
-        totalgb=form.totalgb.data)
+        totalgb=form.totalgb.data, image=filename)
 
         db.session.add(newListing)
         db.session.commit()
