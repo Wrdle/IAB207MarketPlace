@@ -11,10 +11,13 @@ def index():
 
 @bp.route('/search', methods=['GET','POST'])
 def search(): 
-    search = request.args.get('searchKeywords')
+    searchKeywords = request.args.get('searchKeywords')
     searchCategory = request.args.get('searchCategory')
-    listings = Listing.query.filter(and_(Listing.name.like("%" + search + "%"), Listing.category == searchCategory)).all()
-    return render_template('search.html', listings = listings, search=search)
+    if (searchKeywords != None):     
+        listings = Listing.query.filter(and_(Listing.name.like("%" + searchKeywords + "%"), Listing.category == searchCategory)).all()
+    else:
+        listings = Listing.query.filter(Listing.category == searchCategory).all()
+    return render_template('search.html', listings = listings, search=searchKeywords)
 
 @bp.route('/log_sign')
 def log_sign():

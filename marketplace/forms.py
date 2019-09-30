@@ -29,7 +29,7 @@ class CreateItemForm(FlaskForm):
     name = StringField('Item Name', validators=[InputRequired()])
     description = TextAreaField('Item Description', validators=[InputRequired(), Length(min=10, max=200)])
     suburb = StringField('Suburb', validators=[InputRequired()])
-    state = StringField('State', validators=[InputRequired()])
+    state = SelectField('State', validators=[InputRequired()], choices=[('QLD','QLD'),('NSW','NSW'),('ACT','ACT'), ('NT','NT'), ('WA','WA'), ('SA','SA'), ('TAS','TAS'), ('VIC','VIC')])
     category = SelectField('Category', validators=[InputRequired()], choices=[('Desktop','Desktop'),('Laptop','Laptop'),('All In One','All In One')])
     price = IntegerField('Price', validators=[InputRequired()])
     cpu = StringField('CPU', validators=[InputRequired()])
