@@ -5,17 +5,20 @@ import os
 from .models import User, Listing
 from .forms import CreateItemForm
 from . import db
+from flask_login import login_required
 
 
 bp = Blueprint('item', __name__, url_prefix='/item')
 
 @bp.route('/<id>/update')
+@login_required
 def updateItem(id):
     # Will use id to know which computer the user wants to update the listing on.
     # Will query the db for the information and display it in the corrosponding boxes for editing
     return render_template('update_item.html')
 
 @bp.route('/<id>/bids')
+@login_required
 def bids(id):
     # Will use id to know which computer the user wants to update the listing on.
     # Will query the db for the information and display it in the corrosponding boxes for editing
@@ -31,6 +34,7 @@ def item(id):
     return render_template('404.html')
 
 @bp.route('/create', methods = ['GET', 'POST'])
+@login_required
 def createItem():
     form = CreateItemForm()
 

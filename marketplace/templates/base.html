@@ -45,9 +45,21 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    <!-- Change navbar to logout when user is signed in -->
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">SIGN IN <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link disabled text-muted" href="#">
+                        <span>Hi {{ current_user.username }}</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
+                    </li>
+                    <!-- Otherwise let user sign in -->
+                    {% else %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="/login">SIGN IN <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="/item/create">CREATE LISTING</a>
                     </li>

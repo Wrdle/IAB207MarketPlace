@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
-<!-- import wtf forms -->
-{% import "bootstrap/wtf.html" as wtf %}
 
 {% block header %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/search.css')}}">
 {% endblock %}
 
 {% block content %}
-<br>
-<br>
-<h2 class="text-center">Register</h2>
 <div class="container col-sm-6">
-    {{wtf.quick_form(form)}} 
-</div>
-
+    <br>
+    <br>
+    <h2>You have logged out. Come back soon :)</h2>
+</div>    
 {% endblock %}
+
