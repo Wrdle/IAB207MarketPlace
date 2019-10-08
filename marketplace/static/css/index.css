@@ -44,8 +44,8 @@
 /* Responsive Styling for Search Bar */
 @media screen and (max-width: 600px) {
     .main .jumbotron {
-      padding: 30px 15px 30px 15px;
-      width: 80%;
+      padding: 20px 5px 20px 5px;
+      width: 90%;
     }
     .main .jumbotron-text {
         font-size: 6vw;

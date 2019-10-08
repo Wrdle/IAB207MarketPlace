@@ -11,6 +11,7 @@ class User(db.Model,UserMixin):
     phone = db.Column(db.String(50))
 
     listings = db.relationship('Listing', backref='user')
+    bids = db.relationship('Bid', backref='user')
 
 class Listing(db.Model):
     __tablename__='listings'
@@ -28,6 +29,14 @@ class Listing(db.Model):
     image = db.Column(db.String(200), nullable=False)
 
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    bids = db.relationship('Bid', backref='listing')
+
+class Bid(db.Model):
+    __tablename__ = 'bids'
+    id = db.Column(db.Integer, primary_key=True)
+    item_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)
+    bidder_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    bid_date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
 
 

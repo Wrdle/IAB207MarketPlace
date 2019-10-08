@@ -1,0 +1,11 @@
+.search-container {
+    margin: 10px 10px 10px 10px;
+}
+
+.item-picture {
+    background-size: cover;
+    background-position: center;
+    display: block;
+    height: 100%;
+    width: 100%;
+}

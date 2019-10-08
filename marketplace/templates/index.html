@@ -19,7 +19,7 @@
                 <input type="text" name="searchKeywords" id="search-bar" class="form-control" placeholder="Search for anything" aria-label="Search" aria-describedby="basic-addon1">
                 <div class="input-group-append">
                     <select class="custom-select" name="searchCategory" id="searchCategory">
-                        <option selected value="Desktop">Dekstop</option>
+                        <option selected value="Desktop">Desktop</option>
                         <option value="Laptop">Laptop</option>
                         <option value="All In One">All In One</option>
                     </select>
@@ -37,7 +37,7 @@
             {% for listing in listings %}
                 <div class="col-md-3">
                     <div class="card shadow-sm">
-                        <a href="item.html" style="background-image: url('{{url_for('static', filename=('img/listings/' + listing.image))}}');"></a>
+                        <a href="item/{{listing.id}}" style="background-image: url('{{url_for('static', filename=('img/listings/' + listing.image))}}');"></a>
                         <div class="card-body">
                             <h6 class="card-title"><a href="item/{{listing.id}}">{{ listing.name }}</a></h6>
                             <p>{{ listing.suburb }}, {{ listing.state }} - ${{ listing.price }}</p>

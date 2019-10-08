@@ -11,10 +11,10 @@
 <div class="container">
     <div class="card shadow-sm">
         <div class="item-view-container">
-            <img src="{{url_for('static', filename='img/cougarpc.jpg')}}">
+            <img src="{{url_for('static', filename=('img/listings/' + listing.image))}}">
             <div id="body">
-                <div id="item-title">Item Title</div>
-                <a href="item.html"><u>View Original</u></a>
+                <div id="item-title">{{listing.name}}</div>
+                <a href="/item/{{ listing.id }}"><u>View Original</u></a>
             </div>
         </div>
     </div>
@@ -28,57 +28,25 @@
             
             <!-- User Offers List -->
             <ul class="list-group input-group">
-                <li class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="row">
-                        <!-- Side Checkbox-->
-                        <div class="col-1">
-                            <input type="checkbox" aria-label="Checkbox for following text input">
-                        </div>
-                        <!-- User info -->
-                        <div class="col-11">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">BigJohnno</h5>
-                                <small>8:09PM 24/3/2019</small>
-                            </div>
-                            <small class="mb-1"><b>Email:</b> johnny956@gmail.com</small><br>
-                            <small class="mb-1"><b>Phone Number:</b> 038472322487</small>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="row">
-                        <!-- Side Checkbox-->
-                        <div class="col-1">
+                {% for bid in bids %}
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="row">
+                            <!-- Side Checkbox-->
+                            <div class="col-1">
                                 <input type="checkbox" aria-label="Checkbox for following text input">
-                        </div>
-                        <!-- User info -->
-                        <div class="col-11">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">BigJohnno</h5>
-                                <small>8:09PM 24/3/2019</small>
                             </div>
-                            <small class="mb-1"><b>Email:</b> johnny956@gmail.com</small><br>
-                            <small class="mb-1"><b>Phone Number:</b> 038472322487</small>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="row">
-                        <!-- Side Checkbox-->
-                        <div class="col-1">
-                                <input type="checkbox" aria-label="Checkbox for following text input">
-                        </div>
-                        <!-- User info -->
-                        <div class="col-11">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">BigJohnno</h5>
-                                <small>8:09PM 24/3/2019</small>
+                            <!-- User info -->
+                            <div class="col-11">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{bid.user.username}}</h5>
+                                    <small>{{bid.bid_date}}</small>
+                                </div>
+                                <small class="mb-1"><b>Email:</b> {{bid.user.email}}</small><br>
+                                <small class="mb-1"><b>Phone Number:</b> {{bid.user.phone}}</small>
                             </div>
-                            <small class="mb-1"><b>Email:</b> johnny956@gmail.com</small><br>
-                            <small class="mb-1"><b>Phone Number:</b> 038472322487</small>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                {% endfor %}
             </ul>
 
 

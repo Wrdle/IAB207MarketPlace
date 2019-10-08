@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, url_for
 from .models import Listing
 from sqlalchemy import and_, desc
+from flask_login import login_required, current_user
 
 bp = Blueprint('main', __name__)
 
@@ -9,6 +10,13 @@ bp = Blueprint('main', __name__)
 def index():
     listings = Listing.query.order_by(desc(Listing.post_date)).limit(4).all()
     return render_template('index.html', listings=listings)
+
+@bp.route('/listings')
+@login_required
+def listings():
+    listings = Listing.query.filter(Listing.seller_id == current_user.id).all()
+    return render_template('listings.html', listings = listings, current_user=current_user)
+
 
 @bp.route('/search', methods=['GET','POST'])
 def search(): 

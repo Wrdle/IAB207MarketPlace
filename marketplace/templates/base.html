@@ -64,11 +64,21 @@
                         <a class="nav-link" href="/item/create">CREATE LISTING</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="manageitem.html">MY LISTINGS</a>
+                        <a class="nav-link" href="/listings">MY LISTINGS</a>
                     </li>
                 </ul>
             </div>
         </nav>
+
+        <div class="container">
+            {% for category, message in flashed_messages %}
+                <br>
+                <div class="alert alert-{{category}}" role="alert">
+                    {{message}}
+                </div>
+            {% endfor %}
+        </div>
+
         {% block content %}
         {% endblock %}        
         <div class="container">
@@ -83,7 +93,7 @@
                 <!-- Narbar Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="manageitem.html">My Listings</a>
+                        <a class="nav-link" href="/listings">My Listings</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/listings.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br><br>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">My Listings</h5>
+                <h6 class="card-subtitle mb-2 text-muted">View Past Listings</h6>
+            </div>
+        </div>
+        <br>
+        {% if listings == [] %}
+            <center><h2>You havent created any listings yet... Come back here once you have :)</h2></center>
+        {% else %}    
+            {% for listing in listings %}
+                <div class="card mb-3 item-result" style="width: 100%">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <div class="item-picture" style="background-image: url({{url_for('static', filename=('img/listings/' + listing.image))}})"></div>
+                        </div>
+                        <div class="col-md-6" class="search-container">
+                            <div class="card-body">
+                                <a href="/item/{{ listing.id }}/bids"><h5 class="card-title">{{ listing.name }}</h5></a>
+                                <p><b>Price: </b> ${{ listing.price }} <b>Type: </b>{{ listing.category }}</p>
+                                <p class="card-text">{{ listing.description }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2" class="search-container">
+                            <div class="card-body">
+                                <small class="text-muted">Posted {{ listing.post_date.strftime("%d/%m/%Y") }}</small>
+                                <small class="text-muted">{{ listing.suburb }}, {{ listing.state }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

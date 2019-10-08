@@ -70,10 +70,14 @@
                         <li><b>Price: </b>${{listing.price}}</li>
                     </ul>
                 </div>
-                <hr>
-                <div class="card-body">
-                    <button type="button" id="place-expression" class="btn btn-success">Place Expression</button>
-                </div>
+                {% if listing.seller_id != current_user.id %}
+                    <hr>
+                    <div class="card-body">
+                        <form method="POST" action="/item/{{listing.id}}">
+                            <button type="submit" id="place-expression" class="btn btn-success">Place Expression</button>
+                        </form>
+                    </div>
+                {% endif %}
                 <div class="card-footer">
                     <small class="text-muted">Posted {{ listing.post_date.strftime("%d/%m/%Y") }}</small>
                 </div>
