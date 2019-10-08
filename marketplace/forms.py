@@ -1,7 +1,7 @@
 
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, IntegerField, SelectField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, DataRequired
+from wtforms.validators import InputRequired, Length, Email, EqualTo, Regexp
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 
@@ -15,7 +15,7 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     username = StringField("User Name", validators=[InputRequired()])
     email = StringField("Email Address", validators=[Email("Please enter a valid email")])
-    phone = StringField("Phone Number", validators=[DataRequired("Please enter a valid phone number")])
+    phone = StringField("Phone Number", validators=[Regexp(regex="^04[0-9]{8}$", message="Please enter a valid phone number")])
 
     #linking two fields - password should be equal to data entered in confirm
     password=PasswordField("Password", validators=[InputRequired(),
