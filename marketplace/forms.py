@@ -36,4 +36,4 @@ class CreateItemForm(FlaskForm):
     cpu = StringField('CPU', validators=[InputRequired()])
     ramgb = IntegerField('RAM (GB)', validators=[InputRequired()])
     totalgb = IntegerField('Total Storage (GB)', validators=[InputRequired()])
-    submit = SubmitField("Create Listing")
+    submit = SubmitField("Submit")

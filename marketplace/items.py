@@ -102,5 +102,5 @@ def edit_item(id):
 
         db.session.commit()
 
-    return render_template('create_item.html', form=form, current_user=current_user)
+    return render_template('update_item.html', form=form, current_user=current_user)
 
