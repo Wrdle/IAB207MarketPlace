@@ -79,7 +79,8 @@
                     </div>
                 {% endif %}
                 <div class="card-footer">
-                    <small class="text-muted">Posted {{ listing.post_date.strftime("%d/%m/%Y") }}</small>
+                    <small class="text-muted">Posted {{ listing.post_date.strftime("%d/%m/%Y") }}</small> <br>
+                    <a href="/item/{{ listing.id }}/edit">Edit Listing</a></small>
                 </div>
             </div>
         </div>

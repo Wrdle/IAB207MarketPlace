@@ -83,3 +83,24 @@ def createItem():
 def get_listing():
     listingResult = Listing.query.filter_by(id=id).first()
     return listingResult
+
+@bp.route('/<id>/edit', methods = ['GET', 'POST'])
+@login_required
+def edit_item(id):
+    listing = Listing.query.filter_by(id=id).first()
+    form = CreateItemForm(obj=listing)
+    if form.validate_on_submit():
+        listing.name = form.name.data
+        listing.description = form.description.data
+        listing.suburb = form.suburb.data
+        listing.state = form.state.data
+        listing.price = form.price.data
+        listing.category = form.category.data
+        listing.cpu = form.cpu.data
+        listing.ramgb = form.ramgb.data
+        listing.totalgb = form.totalgb.data
+
+        db.session.commit()
+
+    return render_template('create_item.html', form=form, current_user=current_user)
+
