@@ -38,6 +38,10 @@ class Bid(db.Model):
     bidder_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     bid_date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
+class Sold(db.Model):
+    __tablename__ = 'sold'
+    id = db.Column(db.Integer, primary_key=True)
+    item_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)
 
 
     

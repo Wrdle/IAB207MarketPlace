@@ -26,35 +26,39 @@
             <div id="title">User Offers</div>
             <div id="subtitle">Below is a list of users interested in your product including their contact information so you may select a buyer. If you have sold your item, select the checkbox of the user you sold the item to, then click Mark as Sold. It's as easy as that!</div>
             
+            {% if bids != [] %}
             <!-- User Offers List -->
-            <ul class="list-group input-group">
-                {% for bid in bids %}
-                    <li class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="row">
-                            <!-- Side Checkbox-->
-                            <div class="col-1">
-                                <input type="checkbox" aria-label="Checkbox for following text input">
-                            </div>
-                            <!-- User info -->
-                            <div class="col-11">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">{{bid.user.username}}</h5>
-                                    <small>{{bid.bid_date}}</small>
+                <ul class="list-group input-group">
+                    {% for bid in bids %}
+                        <li class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="row">
+                                <!-- Side Checkbox-->
+                                <div class="col-1">
+                                    <input type="checkbox" aria-label="Checkbox for following text input">
                                 </div>
-                                <small class="mb-1"><b>Email:</b> {{bid.user.email}}</small><br>
-                                <small class="mb-1"><b>Phone Number:</b> {{bid.user.phone}}</small>
+                                <!-- User info -->
+                                <div class="col-11">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{bid.user.username}}</h5>
+                                        <small>{{bid.bid_date}}</small>
+                                    </div>
+                                    <small class="mb-1"><b>Email:</b> {{bid.user.email}}</small><br>
+                                    <small class="mb-1"><b>Phone Number:</b> {{bid.user.phone}}</small>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
 
 
-            <br>
-            <!-- Activate Modal Button -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    Mark as Sold
-            </button>
+                <br>
+                <!-- Activate Modal Button -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Mark as Sold
+                </button>
+            {% else %}
+                <center><b>You do not currently have any bids. Once you do they will appear here.</b></center>
+            {% endif %}
             
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
