@@ -22,81 +22,83 @@
 
     <!-- Main body card -->
     <div class="card shadow-sm bids-card">
-        <div class="card-body">
-            <div id="title">User Offers</div>
-            <div id="subtitle">Below is a list of users interested in your product including their contact information so you may select a buyer. If you have sold your item, select the checkbox of the user you sold the item to, then click Mark as Sold. It's as easy as that!</div>
-            
-            {% if bids != [] %}
-            <!-- User Offers List -->
-                <ul class="list-group input-group">
-                    {% for bid in bids %}
-                        <li class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="row">
-                                <!-- Side Checkbox-->
-                                <div class="col-1">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </div>
-                                <!-- User info -->
-                                <div class="col-11">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">{{bid.user.username}}</h5>
-                                        <small>{{bid.bid_date}}</small>
+        <form method="POST" action="/item/{{ listing.id }}/bids">
+            <div class="card-body">
+                <div id="title">User Offers</div>
+                <div id="subtitle">Below is a list of users interested in your product including their contact information so you may select a buyer. If you have sold your item, select the checkbox of the user you sold the item to, then click Mark as Sold. It's as easy as that!</div>
+                
+                {% if bids != [] %}
+                <!-- User Offers List -->
+                    <ul class="list-group input-group">
+                        {% for bid in bids %}
+                            <li class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="row">
+                                    <!-- Side Checkbox-->
+                                    <div class="col-1">
+                                        <input type="radio" value="{{bid.user.id}}" name="buyer">
                                     </div>
-                                    <small class="mb-1"><b>Email:</b> {{bid.user.email}}</small><br>
-                                    <small class="mb-1"><b>Phone Number:</b> {{bid.user.phone}}</small>
+                                    <!-- User info -->
+                                    <div class="col-11">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">{{bid.user.username}}</h5>
+                                            <small>{{bid.bid_date}}</small>
+                                        </div>
+                                        <small class="mb-1"><b>Email:</b> {{bid.user.email}}</small><br>
+                                        <small class="mb-1"><b>Phone Number:</b> {{bid.user.phone}}</small>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
 
 
-                <br>
-                <!-- Activate Modal Button -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        Mark as Sold
-                </button>
-            {% else %}
-                <center><b>You do not currently have any bids. Once you do they will appear here.</b></center>
-            {% endif %}
-            
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Confirm your sale</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="buyer-info">
-                                <!-- Sale Price -->
-                                <div class="input-group mb-3" id="sale-price">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Sold Price</span>
-                                        <span class="input-group-text">$</span>
+                    <br>
+                    <!-- Activate Modal Button -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            Mark as Sold
+                    </button>
+                {% else %}
+                    <center><b>You do not currently have any bids. Once you do they will appear here.</b></center>
+                {% endif %}
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Confirm your sale</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="buyer-info">
+                                    <!-- Sale Price -->
+                                    <div class="input-group mb-3" id="sale-price">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Sold Price</span>
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                        <input type="number" name="price" class="form-control" placeholder="Item Sold Price">
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Item Sold Price">
-                                </div>
-                                <!-- Date Sold -->
-                                <div class="input-group mb-3" id="date-sold">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Date Sold</span>
+                                    <!-- Date Sold -->
+                                    <div class="input-group mb-3" id="date-sold">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Date Sold</span>
+                                        </div>
+                                        <input class="form-control" name="sale_date" type="date">
                                     </div>
-                                    <input class="form-control" type="date">
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Mark As Sold</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Mark As Sold</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 {% endblock %}

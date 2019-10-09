@@ -77,10 +77,14 @@
                             <button type="submit" id="place-expression" class="btn btn-success">Place Expression</button>
                         </form>
                     </div>
+                {% elif listing.sold_id != None and listing.seller_id != current_user.id %}
+                <hr>
+                <div class="card-body">
+                    <button id="place-expression" class="btn btn-warning">Sold</button>
+                </div>
                 {% endif %}
                 <div class="card-footer">
                     <small class="text-muted">Posted {{ listing.post_date.strftime("%d/%m/%Y") }}</small> <br>
-                    <a href="/item/{{ listing.id }}/edit">Edit Listing</a></small>
                 </div>
             </div>
         </div>

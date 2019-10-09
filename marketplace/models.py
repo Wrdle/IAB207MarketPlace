@@ -12,6 +12,7 @@ class User(db.Model,UserMixin):
 
     listings = db.relationship('Listing', backref='user')
     bids = db.relationship('Bid', backref='user')
+    bought_item_ids = db.relationship('Sold', backref='user')
 
 class Listing(db.Model):
     __tablename__='listings'
@@ -30,6 +31,7 @@ class Listing(db.Model):
 
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     bids = db.relationship('Bid', backref='listing')
+    sold_id = db.relationship('Sold', backref='listing')
 
 class Bid(db.Model):
     __tablename__ = 'bids'
@@ -41,7 +43,10 @@ class Bid(db.Model):
 class Sold(db.Model):
     __tablename__ = 'sold'
     id = db.Column(db.Integer, primary_key=True)
-    item_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)
+    item_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)  
+    sale_price = db.Column(db.Integer, nullable=False)
+    buyer_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    date = db.Column(db.Date, nullable=False)
 
 
     
