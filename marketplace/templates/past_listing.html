@@ -9,14 +9,11 @@
 
 <!-- Top Quick View with Title and Image -->
 <div class="container">
-    <div class="card shadow-sm">
-        <div class="item-view-container">
-            <div id="body">
-                <div id="item-title">My Listings</div>
-                <a class="mb-1" href="currentlisting">Current Listing</a>
-                <a class="mb-1" href="pastlisting">Past Listing</a>
-
-            </div>
+    <br><br>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">My Past Listings</h5>
+            <h6 class="card-subtitle mb-2 text-muted"> <a href="listings">View Current Listings</a></h6>  
         </div>
     </div>
     <br>
@@ -24,8 +21,6 @@
     <!-- Main body card -->
     <div class="card shadow-sm bids-card">
         <div class="card-body">
-            <div id="title">Past Listings</div>
-            <div id="subtitle">Below is a list of your past listings/ the items you have successfully sold.</div>
             
             <!-- User Current Listing -->
             <ul class="list-group input-group">
@@ -90,11 +85,10 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
 {% endblock %}

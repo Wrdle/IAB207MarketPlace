@@ -27,3 +27,8 @@ def search():
     else:
         listings = Listing.query.filter(Listing.category == searchCategory).all()
     return render_template('search.html', listings = listings, search=searchKeywords)
+
+@bp.route('/past_listing')
+@login_required
+def pastlisting():
+    return render_template('past_listing.html')
