@@ -115,4 +115,3 @@ def edit_item(id):
 
         return render_template('update_item.html', form=form, current_user=current_user)
     return render_template('404.html')
-

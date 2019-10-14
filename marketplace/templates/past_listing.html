@@ -21,10 +21,11 @@
     <!-- Main body card -->
     <div class="card shadow-sm bids-card">
         <div class="card-body">
-            {% if listings.sold_id == [] %}
+            {% set past_listings = db.engine.execute("SELECT listings.name, sale_price, date, users.username, users.phone, users.email, listings.id FROM listings JOIN sold ON listings.id = sold.item_id JOIN users ON users.id = sold.buyer_id") %}
+            {% if past_listings == [] %}
                 <center><h2>You havent sold any listings yet... Come back here once you have :)</h2></center>
             {% else %}
-                {% for past_listings in listings %}
+                {% for listing in past_listings %}
                     <!-- User Past Listings -->
                     <ul class="list-group input-group">
                         <li class="list-group-item list-group-item-action flex-column align-items-start">
@@ -32,15 +33,15 @@
                                 <!-- Listing Info -->
                                 <div class="col-10">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <a href="/item/{{ listing.id }}/bids"><h5 class="card-title">{{ listing.name }}</h5></a>
+                                        <a href="/item/{{ listing.id }}/bids"><h5 class="card-title">{{ listing.values()[0] }}</h5></a>
                                     </div>
-                                    <small class="mb-1"><b>Price:</b> ${{ listing.price }}</small><br>
-                                    <small class="mb-1"><b>Sold To:</b> {{ users.email }}</small><br>
-                                    <small class="mb-1"><b>Email:</b> {{ users.username }}</small><br>
-                                    <small class="mb-1"><b>Phone Number:</b> {{ users.phone }}</small>
+                                    <small class="mb-1"><b>Price:</b> ${{ listing.values()[1] }}</small><br>
+                                    <small class="mb-1"><b>Sold To:</b> {{ listing.values()[3] }}</small><br>
+                                    <small class="mb-1"><b>Email:</b> {{ listing.values()[5] }}</small><br>
+                                    <small class="mb-1"><b>Phone Number:</b> {{ listing.values()[4] }}</small>
                                 </div>
                                 <div class="col-2">
-                                    <small>Sold On <br> {{ sold.date }}<br> <a href="#">View Listing</a></small>
+                                    <small>Sold On <br> {{ listing.values()[2] }}<br> <a href="/item/{{listing.values()[6]}}">View Listing</a></small>
                                 </div>
                             </div>
                         </li>
