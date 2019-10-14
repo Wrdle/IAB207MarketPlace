@@ -70,7 +70,7 @@
                         <li><b>Price: </b>${{listing.price}}</li>
                     </ul>
                 </div>
-                {% if listing.seller_id != current_user.id %}
+                {% if listing.seller_id != current_user.id and listing.sold_id == []%}
                     <hr>
                     <div class="card-body">
                         <form method="POST" action="/item/{{listing.id}}">

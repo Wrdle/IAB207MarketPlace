@@ -16,7 +16,12 @@ def create_app():
   app.debug=True
   app.secret_key='notASecret'
   #set the app configuration data 
+<<<<<<< HEAD
   app.config['SQLALCHEMY_DATABASE_URI']=os.environ['DATABASE_URL']
+=======
+  # sqlite:///marketplace.sqlite
+  app.config['SQLALCHEMY_DATABASE_URI']='postgresql-globular-02279'
+>>>>>>> d457c9d3c888a02ddc9e6247f1a98ce6c1e3bcad
   #initialize db with flask app
   db.init_app(app)
 
