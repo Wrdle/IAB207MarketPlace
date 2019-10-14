@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, url_for
-from .models import Listing
+from .models import Listing, Sold, User, Bid
 from sqlalchemy import and_, desc
 from flask_login import login_required, current_user
+from . import db
 
 bp = Blueprint('main', __name__)
 
@@ -28,7 +29,10 @@ def search():
         listings = Listing.query.filter(Listing.category == searchCategory, Listing.sold_id == None).all()
     return render_template('search.html', listings = listings, search=searchKeywords)
 
-@bp.route('/past_listing')
+@bp.route('/past_listings')
 @login_required
-def pastlisting():
-    return render_template('past_listing.html')
+def past_listings():
+    #result = db.engine.execute("SELECT listings.name, sale_price, date, users.username, users.phone, users.email FROM listings JOIN sold ON listings.id = sold.item_id JOIN users ON users.id = sold.buyer_id")
+    #for row in result:
+    #    print(row.values())
+    return render_template('past_listing.html', db=db)

@@ -21,44 +21,33 @@
     <!-- Main body card -->
     <div class="card shadow-sm bids-card">
         <div class="card-body">
-            
-            <!-- User Current Listing -->
-            <ul class="list-group input-group">
-                <li class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="row">
-                        <!-- Listing Info -->
-                        <div class="col-10">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Tesla Lol</h5>
+            {% set past_listings = db.engine.execute("SELECT listings.name, sale_price, date, users.username, users.phone, users.email, listings.id FROM listings JOIN sold ON listings.id = sold.item_id JOIN users ON users.id = sold.buyer_id") %}
+            {% if past_listings == [] %}
+                <center><h2>You havent sold any listings yet... Come back here once you have :)</h2></center>
+            {% else %}
+                <!-- User Past Listings -->
+                <ul class="list-group input-group">
+                    {% for listing in past_listings %}
+                        <li class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="row">
+                                <!-- Listing Info -->
+                                <div class="col-10">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <a href="/item/{{ listing.id }}/bids"><h5 class="card-title">{{ listing.values()[0] }}</h5></a>
+                                    </div>
+                                    <small class="mb-1"><b>Price:</b> ${{ listing.values()[1] }}</small><br>
+                                    <small class="mb-1"><b>Sold To:</b> {{ listing.values()[3] }}</small><br>
+                                    <small class="mb-1"><b>Email:</b> {{ listing.values()[5] }}</small><br>
+                                    <small class="mb-1"><b>Phone Number:</b> {{ listing.values()[4] }}</small>
+                                </div>
+                                <div class="col-2">
+                                    <small>Sold On <br> {{ listing.values()[2] }}<br> <a href="/item/{{listing.values()[6]}}">View Listing</a></small>
+                                </div>
                             </div>
-                            <small class="mb-1"><b>Price:</b> $3800</small><br>
-                            <small class="mb-1"><b>Sold To:</b> Elon Musk</small><br>
-                            <small class="mb-1"><b>Email:</b> elon@gmail.com</small><br>
-                            <small class="mb-1"><b>Phone Number:</b> 048272322487</small>
-                        </div>
-                        <div class="col-2">
-                            <small>Sold On <br> 9:10AM 1/1/2019<br> <a href="#">View Listing</a></small>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="row">
-                        <!-- Listing Info -->
-                        <div class="col-10">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Not a tesla Lol</h5>
-                            </div>
-                            <small class="mb-1"><b>Price:</b> $3800</small><br>
-                            <small class="mb-1"><b>Sold To:</b> Kernel Sanders</small><br>
-                            <small class="mb-1"><b>Email:</b> kernelsanders@gmail.com</small><br>
-                            <small class="mb-1"><b>Phone Number:</b> 048272322487</small>
-                        </div>
-                        <div class="col-2">
-                            <small>Sold On <br> 9:10AM 1/1/2019<br> <a href="#">View Listing</a></small>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
 </div>
