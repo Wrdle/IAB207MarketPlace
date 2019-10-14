@@ -15,7 +15,7 @@ def create_app():
   app.debug=True
   app.secret_key='notASecret'
   #set the app configuration data 
-  app.config['SQLALCHEMY_DATABASE_URI']='postgresql-aerodynamic-96899'
+  app.config['SQLALCHEMY_DATABASE_URI']='postgresql-globular-02279'
   #initialize db with flask app
   db.init_app(app)
 
