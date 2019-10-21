@@ -86,8 +86,8 @@ def createItem():
         totalgb=form.totalgb.data, image=filename)
         db.session.add(newListing)
         db.session.commit()
-
-        return redirect(url_for('item.createItem'))
+        flash("Your item has been posted successfully.", category="success")
+        return redirect(url_for('main.index'))
     return render_template('create_item.html', pageTitle="Create an item",  form=form, current_user=current_user)
 
 def get_listing():
@@ -130,4 +130,18 @@ def edit_item(id):
             return redirect(url_for('main.index'))
 
         return render_template('update_item.html', pageTitle="Edit " + listing.name, form=form, current_user=current_user)
+    return render_template('404.html', pageTitle="404 Error")
+
+@bp.route('/<id>/delete', methods = ['GET', 'POST'])
+@login_required
+def delete_item(id):
+
+    listing = Listing.query.filter_by(id=id).first()
+    if (current_user.id == listing.seller_id): 
+        bids = Bid.query.filter(listing==listing).delete()
+        db.session.delete(listing)
+        db.session.commit()
+        flash("You have successfully deleted your post", category="success")
+        return redirect(url_for('main.index'))
+
     return render_template('404.html', pageTitle="404 Error")

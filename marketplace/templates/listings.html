@@ -28,7 +28,8 @@
                                 <a href="/item/{{ listing.id }}/bids"><h5 class="card-title">{{ listing.name }}</h5></a>
                                 <p><b>Price: </b> ${{ listing.price }} <b>Type: </b>{{ listing.category }}</p>
                                 <p class="card-text">{{ listing.description }}</p> <br>
-                                <a href="/item/{{ listing.id }}/edit">Edit Listing</a></small>
+                                <a href="/item/{{ listing.id }}/edit">Edit Listing</a>&nbsp;&nbsp;&nbsp;
+                                <a href="/item/{{ listing.id }}/delete" style="color: red;">Delete</a>
                             </div>
                         </div>
                         <div class="col-md-2" class="search-container">
