@@ -24,10 +24,10 @@ def search():
     searchKeywords = request.args.get('searchKeywords')
     searchCategory = request.args.get('searchCategory')
     if (searchKeywords != None):     
-        listings = Listing.query.filter(and_(Listing.name.like("%" + searchKeywords + "%"), Listing.category == searchCategory, Listing.seller_id == None)).all()
+        listings = Listing.query.filter(and_(Listing.name.like("%" + searchKeywords + "%"), Listing.category == searchCategory,  Listing.sold_id == None)).all()
     else:
         listings = Listing.query.filter(Listing.category == searchCategory, Listing.sold_id == None).all()
-    return render_template('search.html', pageTitle="Search: " + searchKeywords, listings = listings, search=searchKeywords)
+    return render_template('search.html', pageTitle="Compubay Search", listings = listings, search=searchKeywords)
 
 @bp.route('/past_listings')
 @login_required
