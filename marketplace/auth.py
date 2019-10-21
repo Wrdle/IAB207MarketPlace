@@ -33,7 +33,7 @@ def login():
             print(error)
             flash(error)
         #it comes here when it is a get method
-    return render_template('login.html', form=form, heading='Login')
+    return render_template('login.html', pageTitle="Compubay Login", form=form, heading='Login')
 
 @bp.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -54,9 +54,9 @@ def register():
         #commit to the database and redirect to HTML page
         return redirect(url_for('auth.register'))
     
-    return render_template('login.html', form=form, heading='Register')
+    return render_template('login.html', pageTitle="Compubay Register", form=form, heading='Register')
 
 @bp.route('/logout')
 def logout():
     logout_user()
-    return render_template('logout.html')
+    return render_template('logout.html', pageTitle="Compubay Logout")

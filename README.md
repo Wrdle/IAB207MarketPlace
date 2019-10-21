@@ -7,3 +7,4 @@ A group assignment in which you will develop a web application that implements t
 3. Flask WTForms
 4. Flask SQLAlchemy
 5. Flask Login
+
