@@ -27,7 +27,7 @@ class RegisterForm(FlaskForm):
 
 class CreateItemForm(FlaskForm):
     image = FileField('image', validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
-    name = StringField('Item Name', validators=[Regexp(regex="^\w+$", message="Please only use letters and numbers")])
+    name = StringField('Item Name', validators=[InputRequired()])
     description = TextAreaField('Item Description', validators=[InputRequired(), Length(min=10, max=200)])
     suburb = StringField('Suburb', validators=[Regexp(regex="^([A-Za-z]+\s)*[A-Za-z]+$", message="Please enter a valid Suburb")])
     state = SelectField('State', validators=[InputRequired()], choices=[('QLD','QLD'),('NSW','NSW'),('ACT','ACT'), ('NT','NT'), ('WA','WA'), ('SA','SA'), ('TAS','TAS'), ('VIC','VIC')])
