@@ -71,12 +71,14 @@
         </nav>
 
         <div class="container">
-            {% for category, message in flashed_messages %}
-                <br>
-                <div class="alert alert-{{category}}" role="alert">
-                    {{message}}
-                </div>
-            {% endfor %}
+            {% with messages = get_flashed_messages(with_categories=True)%}
+                {% for category, message in messages %}
+                    <br>
+                    <div class="alert alert-{{category}}" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endwith %}
         </div>
 
         {% block content %}

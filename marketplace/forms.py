@@ -26,7 +26,7 @@ class RegisterForm(FlaskForm):
 
 
 class CreateItemForm(FlaskForm):
-    image = FileField('image', validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
+    image = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
     name = StringField('Item Name', validators=[InputRequired()])
     description = TextAreaField('Item Description', validators=[InputRequired(), Length(min=10, max=200)])
     suburb = StringField('Suburb', validators=[InputRequired()])

@@ -111,7 +111,23 @@ def edit_item(id):
             listing.ramgb = form.ramgb.data
             listing.totalgb = form.totalgb.data
 
+            fp = form.image.data
+            filename = fp.filename
+            filename, ext = os.path.splitext(filename)
+            filename = uuid.uuid4().hex + ext
+
+            # get the current path of the module file… store file relative to this path
+            BASE_PATH = os.path.dirname(__file__)
+            #upload file location – directory of this file/static/image
+            upload_path = os.path.join(BASE_PATH, 'static/img/listings', secure_filename(filename))
+            # save the file and return the db upload path
+            fp.save(upload_path)
+
+            listing.image = filename
+
             db.session.commit()
+            flash("You have successfully updated your listing", category="success")
+            return redirect(url_for('main.index'))
 
         return render_template('update_item.html', pageTitle="Edit " + listing.name, form=form, current_user=current_user)
     return render_template('404.html', pageTitle="404 Error")
