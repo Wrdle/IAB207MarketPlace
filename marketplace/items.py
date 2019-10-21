@@ -37,7 +37,7 @@ def bids(id):
                 return redirect(url_for('main.listings'))
 
         if (listing.seller_id == current_user.id):
-            return render_template('bids.html', pageTitle=listing.name + "bids", listing = listing, bids=bids, flashed_messages = get_flashed_messages(with_categories=True))
+            return render_template('bids.html', pageTitle=listing.name + "bids", listing = listing, bids=bids)
     return render_template('404.html', pageTitle="404 Error")
 
 @bp.route('/<id>', methods = ['GET', 'POST'])
@@ -59,7 +59,7 @@ def item(id):
 
     if (listing != None): 
         sellerid = listing.seller_id
-        return render_template('item.html', pageTitle=listing.name, listing=listing, seller=User.query.filter_by(id=sellerid).first(), current_user=current_user, flashed_messages = get_flashed_messages(with_categories=True))
+        return render_template('item.html', pageTitle=listing.name, listing=listing, seller=User.query.filter_by(id=sellerid).first(), current_user=current_user)
     return render_template('404.html', pageTitle="404 Error")
 
 @bp.route('/create', methods = ['GET', 'POST'])
