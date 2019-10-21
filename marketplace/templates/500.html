@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/404.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h2>Internal Server Error</h2>
+    <h3>Oops! Something went wrong...</h3>
+    <h3><a href="/">Return home</a></h3>
+</div>
+{% endblock %}
