@@ -1,39 +1,135 @@
-{% extends 'base.html' %}
-<!-- import wtf forms -->
-{% import "bootstrap/wtf.html" as wtf %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block header %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/search.css')}}">
-{% endblock %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:600,800&display=swap" rel="stylesheet">
 
-{% block content %}
+        <link rel="stylesheet" href="{{url_for('static', filename='css/navbar_footer.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo.ico') }}">
 
-<br>
-<br>
-<h2 class="text-center">{{heading}}</h2>
+        <title>{{ pageTitle }}</title>
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <p class="alert-info">{{ message }}</li>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+        {% import "bootstrap/wtf.html" as wtf %}
+    </head>
+    <body>
+            <!-- Navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="{{url_for('static', filename='img/logo.svg')}}" width="30" height="30" class="d-inline-block align-top" alt="">
+                    COMPUBAY
+            </a>
+            
+            <!-- Navbar Links -->
+            <div class="navbar-collapse collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search?searchCategory=Desktop">DESKTOPS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search?searchCategory=Laptop">LAPTOPS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search?searchCategory=All+In+One">ALL IN ONES</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <!-- Change navbar to logout when user is signed in -->
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-item nav-link disabled text-muted" href="#">
+                        <span>Hi {{ current_user.username }}</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
+                    </li>
+                    <!-- Otherwise let user sign in -->
+                    {% else %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="/login">SIGN IN <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/item/create">CREATE LISTING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listings">MY LISTINGS</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-<!-- Center the form submit button -->
-<style>
-    #submit {display: block; margin: 0 auto; color: #ffffff; background-color: #2eabe6;}
-</style>
+        <div class="main">
+            <div class="main-background-overlay">
+                <div class="container">
+                    {% with messages = get_flashed_messages(with_categories=True)%}
+                        {% for category, message in messages %}
+                            <br>
+                            <div class="alert alert-{{category}}" role="alert">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+                <div class="main-container container">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <h1 class="text-center heading">{{heading}}</h1><br>
+                            {{wtf.quick_form(form)}}
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Show link to register when form has loaded -->
+                    {% if heading|lower =='login' %}
+                    <div class="container col-sm-6 text-center register-text">
+                        <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register now</a>.</p>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="footer-container">
+                    <div class="container">
+                        <!-- Footer-->
+                        <br>
+                        <footer class="navbar navbar-dark navbar-expand-sm">
+                            <ul class="navbar-nav">
+                                <li class="nav-item nav-link">
+                                    © 2019 COMPUBAY
+                                </li>
+                            </ul>
+                            <!-- Narbar Links -->
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/listings">My Listings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                            </ul>
+                        </footer>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="container col-sm-6">
-    {{wtf.quick_form(form)}} 
-</div>    
-
-<!-- Show link to register when form has loaded -->
-{% if heading|lower =='login' %}
-<div class="container col-sm-6 text-center">
-    <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register now</a>.</p>
-</div>
-{% endif %}
-
-{% endblock %}
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -30,10 +30,9 @@ def login():
             login_user(u1)
             return redirect(url_for('main.index'))
         else:
-            print(error)
-            flash(error)
+            flash(error, "danger")
         #it comes here when it is a get method
-    return render_template('login.html', pageTitle="Compubay Login", form=form, heading='Login')
+    return render_template('login.html', pageTitle="Compubay - Login", form=form, heading='Login')
 
 @bp.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -54,9 +53,10 @@ def register():
         #commit to the database and redirect to HTML page
         return redirect(url_for('auth.register'))
     
-    return render_template('login.html', pageTitle="Compubay Register", form=form, heading='Register')
+    return render_template('login.html', pageTitle="Compubay - Register", form=form, heading='Register')
 
 @bp.route('/logout')
 def logout():
     logout_user()
-    return render_template('logout.html', pageTitle="Compubay Logout")
+    flash("You have been successfully signed out. See you next time :)", "success");
+    return redirect(url_for('main.index'))

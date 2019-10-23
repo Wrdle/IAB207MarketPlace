@@ -37,8 +37,8 @@ def bids(id):
                 return redirect(url_for('main.listings'))
 
         if (listing.seller_id == current_user.id):
-            return render_template('bids.html', pageTitle=listing.name + "bids", listing = listing, bids=bids)
-    return render_template('404.html', pageTitle="404 Error")
+            return render_template('bids.html', pageTitle=("Compubay - " + listing.name) + "bids", listing = listing, bids=bids)
+    return render_template('404.html', pageTitle="Compubay - 404 Error")
 
 @bp.route('/<id>', methods = ['GET', 'POST'])
 def item(id):
@@ -59,8 +59,8 @@ def item(id):
 
     if (listing != None): 
         sellerid = listing.seller_id
-        return render_template('item.html', pageTitle=listing.name, listing=listing, seller=User.query.filter_by(id=sellerid).first(), current_user=current_user)
-    return render_template('404.html', pageTitle="404 Error")
+        return render_template('item.html', pageTitle=("Compubay - " + listing.name), listing=listing, seller=User.query.filter_by(id=sellerid).first(), current_user=current_user)
+    return render_template('404.html', pageTitle="Compubay - 404 Error")
 
 @bp.route('/create', methods = ['GET', 'POST'])
 @login_required
@@ -88,7 +88,7 @@ def createItem():
         db.session.commit()
         flash("Your item has been posted successfully.", category="success")
         return redirect(url_for('main.index'))
-    return render_template('create_item.html', pageTitle="Create an item",  form=form, current_user=current_user)
+    return render_template('create_item.html', pageTitle="Compubay - Create an item",  form=form, current_user=current_user)
 
 def get_listing():
     listingResult = Listing.query.filter_by(id=id).first()
@@ -129,8 +129,8 @@ def edit_item(id):
             flash("You have successfully updated your listing", category="success")
             return redirect(url_for('main.index'))
 
-        return render_template('update_item.html', pageTitle="Edit " + listing.name, form=form, current_user=current_user)
-    return render_template('404.html', pageTitle="404 Error")
+        return render_template('update_item.html', pageTitle="Compubay - Edit " + listing.name, form=form, current_user=current_user)
+    return render_template('404.html', pageTitle="Compubay - 404 Error")
 
 @bp.route('/<id>/delete', methods = ['GET', 'POST'])
 @login_required
@@ -144,4 +144,4 @@ def delete_item(id):
         flash("You have successfully deleted your post", category="success")
         return redirect(url_for('main.index'))
 
-    return render_template('404.html', pageTitle="404 Error")
+    return render_template('404.html', pageTitle="Compubay - 404 Error")
