@@ -17,7 +17,7 @@ def create_app():
   app.secret_key='notASecret'
   #set the app configuration data 
   #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///marketplace.sqlite'
-  app.config['SQLALCHEMY_DATABASE_URI']= os.environ['DATABASE_URL']
+  app.config['SQLALCHEMY_DATABASE_URI']= os.environ['postgresql-triangular-97898']
   #initialize db with flask app
   db.init_app(app)
 
